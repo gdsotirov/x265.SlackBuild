@@ -19,7 +19,7 @@
 #
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
-# $Id: x265.SlackBuild,v 1.1 2016/09/16 13:41:04 gsotirov Exp $
+# $Id: x265.SlackBuild,v 1.2 2016/09/16 14:00:18 gsotirov Exp $
 #
 
 . ../../slack-package.conf
@@ -70,11 +70,14 @@ cmake -LAH \
 make -j || exit 6
 make DESTDIR=$PKG install || exit 7
 cd ../..
+# Remove static libs (as no CMAKE option to disable)
+( cd $PKG/usr/lib${LIBDIRSUFFIX}; rm *.a )
 
 # Prepare
 bin_perms $PKG
 ( cd $PKG; strip_bin; strip_lib )
 ( cd $SRC; create_docs $PKG ${NAME}-${VERSION} )
+install -m 644 $CWD/README.in $PKG/usr/doc/${NAME}-${VERSION}/README
 
 mkdir -p $PKG/install
 install -m 644 $CWD/slack-desc     $PKG/install/slack-desc
