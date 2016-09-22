@@ -19,14 +19,14 @@
 #
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
-# $Id: x265.SlackBuild,v 1.2 2016/09/16 14:00:18 gsotirov Exp $
+# $Id: x265.SlackBuild,v 1.3 2016/09/22 17:46:47 gsotirov Exp $
 #
 
 . ../../slack-package.conf
 
 NAME=x265
-VERSION=1.8
-ARCH=${ARCH:-i486}
+VERSION=2.0
+ARCH=${ARCH:-i586}
 BUILD=${BUILD:-1}
 
 TMP=${TMP:-/tmp}
@@ -42,7 +42,7 @@ if [ -e $SRC -a -d $SRC ]; then
   exit 1
 fi
 
-PKG=$TMP/package-$NAME
+PKG=$TMP/package-${NAME}
 if [ -e $PKG -a -d $PKG ]; then
   echo "Package creation directory '$PKG' already exists! Please, move it or remove it."
   exit 2
